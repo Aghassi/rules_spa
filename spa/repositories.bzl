@@ -4,7 +4,6 @@ These are needed for local dev, and users must install them as well.
 See https://docs.bazel.build/versions/main/skylark/deploying.html#dependencies
 """
 
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 load("//spa/private:toolchains_repo.bzl", "PLATFORMS", "toolchains_repo")
@@ -77,15 +76,6 @@ def rules_spa_dependencies():
             sha256 = "92779d3445e7bdc79b961030b996cb0c91820ade7ffa7edca69273f404b085d5",
             strip_prefix = "rules_docker-0.20.0",
             urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.20.0/rules_docker-v0.20.0.tar.gz"],
-        ),
-    )
-
-    # Required to offer local dev with ibazel
-    maybe(
-        git_repository(
-            name = "com_github_ash2k_bazel_tools",
-            commit = "4daedde3ec61a03db841c8a9ca68288972e25a82",
-            remote = "https://github.com/ash2k/bazel-tools.git",
         ),
     )
 
