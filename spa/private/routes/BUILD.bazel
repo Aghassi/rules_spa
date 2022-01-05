@@ -1,0 +1,15 @@
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+"""Marks this as a package"""
+
+bzl_library(
+    name = "generate_route_manifest",
+    srcs = ["generate_route_manifest.bzl"],
+    visibility = ["//spa:__subpackages__"],
+    deps = [
+        "@build_bazel_rules_nodejs//:index.bzl",
+        "@build_bazel_rules_nodejs//:version.bzl",
+        "@build_bazel_rules_nodejs//internal/common:check_bazel_version.bzl",
+        "@build_bazel_rules_nodejs//internal/common:check_version.bzl"
+    ],
+)

@@ -4,6 +4,7 @@ Users should *not* need to install these. If users see a load()
 statement from these, that's a bug in our distribution.
 """
 
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:utils.bzl", "maybe")
 
@@ -68,4 +69,38 @@ def rules_spa_internal_deps():
         name = "aspect_bazel_lib",
         sha256 = "8c8cf0554376746e2451de85c4a7670cc8d7400c1f091574c1c1ed2a65021a4c",
         url = "https://github.com/aspect-build/bazel-lib/releases/download/v0.2.6/bazel_lib-0.2.6.tar.gz",
+    )
+
+    # The minimal version of rules_nodejs we need
+    maybe(
+        http_archive,
+        name = "build_bazel_rules_nodejs",
+        sha256 = "cfc289523cf1594598215901154a6c2515e8bf3671fd708264a6f6aefe02bf39",
+        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.6/rules_nodejs-4.4.6.tar.gz"],
+    )
+
+    # The minimal version of rules_swc that we need
+    maybe(
+        http_archive,
+        name = "aspect_rules_swc",
+        sha256 = "67d6020374627f60c6c1e5d5e1690fcdc4fa39952de8a727d3aabe265ca843be",
+        strip_prefix = "rules_swc-0.1.0",
+        url = "https://github.com/aspect-build/rules_swc/archive/v0.1.0.tar.gz",
+    )
+
+    # Rules Docker requirements
+    maybe(
+        http_archive,
+        name = "io_bazel_rules_docker",
+        sha256 = "92779d3445e7bdc79b961030b996cb0c91820ade7ffa7edca69273f404b085d5",
+        strip_prefix = "rules_docker-0.20.0",
+        urls = ["https://github.com/bazelbuild/rules_docker/releases/download/v0.20.0/rules_docker-v0.20.0.tar.gz"],
+    )
+
+    # Required to offer local dev with ibazel
+    maybe(
+        git_repository,
+        name = "com_github_ash2k_bazel_tools",
+        commit = "4daedde3ec61a03db841c8a9ca68288972e25a82",
+        remote = "https://github.com/ash2k/bazel-tools.git",
     )

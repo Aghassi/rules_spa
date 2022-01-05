@@ -37,3 +37,18 @@ go_rules_dependencies()
 go_register_toolchains(version = "1.17.2")
 
 gazelle_dependencies()
+
+####
+# Rules NodeJS
+####
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
+
+NODE_VERSION = "16.13.0"
+
+# NOTE: this rule installs nodejs, npm, and yarn, but does NOT install
+# your npm dependencies into your node_modules folder.
+# You must still run the package manager to do this.
+node_repositories(
+    node_version = NODE_VERSION,
+    package_json = ["//:package.json"],
+)
