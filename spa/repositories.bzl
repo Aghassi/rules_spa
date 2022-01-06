@@ -47,6 +47,21 @@ def rules_spa_dependencies():
         url = "https://github.com/aspect-build/rules_swc/archive/v0.1.0.tar.gz",
     )
 
+    maybe(
+        http_archive,
+        name = "rules_nodejs",
+        sha256 = "a2b1b60c51b0193ed1646accf77a28cfd4f4ce1f6c86f32ce11455101be3a9c4",
+        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.3/rules_nodejs-core-4.4.3.tar.gz"],
+    )
+
+    maybe(
+        http_archive,
+        name = "aspect_rules_js",
+        sha256 = "dd78b4911b7c2e6c6e919b85cd31572cc15e5baa62b9e7354d8a1065c67136e3",
+        strip_prefix = "rules_js-0.3.1",
+        url = "https://github.com/aspect-build/rules_js/archive/v0.3.1.tar.gz",
+    )
+
     # Rules Docker requirements
     maybe(
         # Rules Go is needed by Rules Docker
