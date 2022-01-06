@@ -13,3 +13,5 @@ bzl_library(
         "@build_bazel_rules_nodejs//internal/common:check_version.bzl"
     ],
 )
+
+exports_files(["generate-route-manifest.js"])
