@@ -13,7 +13,7 @@ WORKSPACE snippet:
 \`\`\`starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 http_archive(
-    name = "com_aghassi_rules_spa",
+    name = "rules_spa",
     sha256 = "${SHA}",
     strip_prefix = "${PREFIX}",
     url = "https://github.com/aghassi/rules_spa/archive/${TAG}.tar.gz",
@@ -24,7 +24,7 @@ http_archive(
 # you should fetch it *before* calling this.
 # Alternatively, you can skip calling this function, so long as you've
 # already fetched all the dependencies.
-load("@com_aghassi_rules_spa//spa:dependencies.bzl", "rules_spa_dependencies")
+load("@rules_spa//spa:repositories.bzl", "rules_spa_dependencies")
 rules_spa_dependencies()
 
 \`\`\`
