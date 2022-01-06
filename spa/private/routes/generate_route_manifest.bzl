@@ -3,13 +3,14 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "npm_package_bin")
 
 def generate_route_manifest(name, routes):
-    """
-    Generates a json file that is a representation of all routes
+    """Generates a json file that is a representation of all routes.
 
     Args:
-        - name: name of the invocation
-        - routes: the sources from the //src/routes rule to be used in the script
-    Returns the generated manifest
+        name: name of the invocation
+        routes: the sources from the //src/routes rule to be used in the script
+    
+    Returns:
+        the generated manifest
     """
 
     nodejs_binary(
