@@ -5,7 +5,7 @@ load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 
 # Defines this as an importable module area for shared macros and configs
 
-def build_host(entry, data, srcs):
+def build_host(entry, data, srcs, webpack):
     """
     Macro that allows easy building of the main host of a SPA
 
@@ -13,9 +13,16 @@ def build_host(entry, data, srcs):
         entry: the entry file to the route
         data: any dependencies the route needs to build including npm modules
         srcs: srcs files to be transpiled and sent to webpack
-    NOTE: users must provide their own load statement for webpack before this macro is called
+        webpack: the webpack module to invoke. The users must provide their own load statement for webpack before this macro is called
     ```python
-    load("@npm//webpack:index.bzl", "webpack")
+    load("@npm//webpack-cli:index.bzl", "webpack_cli")
+
+    # ...
+
+    build_host(
+        ...
+        webpack=webpack_cli
+    )
     ```
     """
 
@@ -37,7 +44,7 @@ def build_host(entry, data, srcs):
         for s in srcs
     ]
 
-    host_config = Label("//spa/webpack:webpack.host.config.js")
+    host_config = Label("//spa/private/webpack:webpack.host.config.js")
     webpack(
         name = "host_build",
         args = [
@@ -47,8 +54,9 @@ def build_host(entry, data, srcs):
             "--config=$(rootpath %s)" % host_config,
         ],
         data = [
-            Label("//spa/webpack:webpack.host.config.js"),
-            Label("//spa/webpack:webpack.common.config.js"),
+            host_config,
+            Label("//spa/private/webpack:webpack.common.config.js"),
+            Label("//spa/private/webpack:webpack.module-federation.shared.js"),
         ] + deps,
         output_dir = True,
     )
