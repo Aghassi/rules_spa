@@ -1,0 +1,7 @@
+# Defines this as an importable module area for shared macros and configs
+exports_files([
+    "webpack.common.config.js",
+    "webpack.host.config.js",
+    "webpack.module-federation.shared.js",
+    "webpack.route.config.js",
+])

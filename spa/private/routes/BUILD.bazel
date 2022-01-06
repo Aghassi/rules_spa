@@ -2,6 +2,8 @@ load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 """Marks this as a package"""
 
+exports_files(["generate-route-manifest.js"])
+
 bzl_library(
     name = "generate_route_manifest",
     srcs = [
@@ -10,5 +12,3 @@ bzl_library(
     ],
     visibility = ["//spa:__subpackages__"],
 )
-
-exports_files(["generate-route-manifest.js"])
