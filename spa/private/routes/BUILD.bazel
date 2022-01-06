@@ -1,9 +1,15 @@
-load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
-
 """Marks this as a package"""
+
+load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
 
 exports_files(["generate-route-manifest.js"])
 
+# The follow ignore comment is added to prevent gazelle
+# from trying to undo "@build_bazel_rules_nodejs//:bzl" that allows this bzl_library
+# to work with starlark doc generation.
+# If this needs modified, remove the ignore comment
+# and run gazelle, then re-add the nodejs:bzl bit that gets removed
+# gazelle:ignore
 bzl_library(
     name = "generate_route_manifest",
     srcs = [
