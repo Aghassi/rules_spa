@@ -15,9 +15,9 @@ def generate_route_manifest(name, routes):
     nodejs_binary(
         name = "bin",
         data = [
-            "//@rules_spa/spa/private/routes:generate-route-manifest.js",
+            "@rules_spa//spa/private/routes:generate-route-manifest.js",
         ],
-        entry_point = "//@rules_spa/spa/private/routes:generate-route-manifest.js",
+        entry_point = "@rules_spa//spa/private/routes:generate-route-manifest.js",
     )
 
     npm_package_bin(
