@@ -1,6 +1,5 @@
 """A macro for creating a webpack federation host module"""
 
-load("@npm//webpack:index.bzl", "webpack")
 load("@aspect_rules_swc//swc:swc.bzl", "swc")
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 
@@ -14,6 +13,10 @@ def build_host(entry, data, srcs):
         entry: the entry file to the route
         data: any dependencies the route needs to build including npm modules
         srcs: srcs files to be transpiled and sent to webpack
+    NOTE: users must provide their own load statement for webpack before this macro is called
+    ```python
+    load("@npm//webpack:index.bzl", "webpack")
+    ```
     """
 
     # list of all transpilation targets from SWC to be passed to webpack
