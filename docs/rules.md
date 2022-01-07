@@ -2,6 +2,32 @@
 
 Public API re-exports
 
+<a id="#build_host"></a>
+
+## build_host
+
+<pre>
+build_host(<a href="#build_host-entry">entry</a>, <a href="#build_host-data">data</a>, <a href="#build_host-srcs">srcs</a>, <a href="#build_host-webpack">webpack</a>, <a href="#build_host-shared">shared</a>)
+</pre>
+
+    Macro that allows easy building of the main host of a SPA
+
+In addition to the usage of this macro, you will be required to pass in all required node_modules
+for compilation as well as anything the shared config relies on (most likely your package.json) into data
+
+
+**PARAMETERS**
+
+
+| Name  | Description | Default Value |
+| :------------- | :------------- | :------------- |
+| <a id="build_host-entry"></a>entry |  the entry file to the route   |  none |
+| <a id="build_host-data"></a>data |  any dependencies the route needs to build including npm modules   |  none |
+| <a id="build_host-srcs"></a>srcs |  srcs files to be transpiled and sent to webpack   |  none |
+| <a id="build_host-webpack"></a>webpack |  the webpack module to invoke. The users must provide their own load statement for webpack before this macro is called   |  none |
+| <a id="build_host-shared"></a>shared |  a nodejs module file that exposes a map of dependencies to their shared module spec https://webpack.js.org/plugins/module-federation-plugin/#sharing-hints. An example of this is located within this repository under the private/webpack folder.   |  none |
+
+
 <a id="#build_route"></a>
 
 ## build_route
