@@ -29,6 +29,7 @@ bzl_library(
     visibility = ["//visibility:public"],
     deps = [
         "//spa/private:build_routes",
+        "//spa/private:build_server",
         "//spa/private/routes:generate_route_manifest",
     ],
 )
