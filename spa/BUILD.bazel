@@ -30,6 +30,7 @@ bzl_library(
     deps = [
         "//spa/private:build_routes",
         "//spa/private:build_server",
+        "//spa/private:host",
         "//spa/private/routes:generate_route_manifest",
     ],
 )

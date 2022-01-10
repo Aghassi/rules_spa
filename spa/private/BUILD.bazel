@@ -8,6 +8,24 @@ bzl_library(
 )
 
 bzl_library(
+    name = "build_server",
+    srcs = ["build_server.bzl"],
+    visibility = ["//spa:__subpackages__"],
+    deps = [
+        "@aspect_rules_swc//swc",
+    ],
+)
+
+bzl_library(
+    name = "host",
+    srcs = ["host.bzl"],
+    visibility = ["//spa:__subpackages__"],
+    deps = [
+        "@aspect_rules_swc//swc",
+    ],
+)
+
+bzl_library(
     name = "toolchains_repo",
     srcs = ["toolchains_repo.bzl"],
     visibility = ["//spa:__subpackages__"],
@@ -17,16 +35,4 @@ bzl_library(
     name = "versions",
     srcs = ["versions.bzl"],
     visibility = ["//spa:__subpackages__"],
-)
-
-bzl_library(
-    name = "build_server",
-    srcs = [
-        "build_server.bzl",
-        "@build_bazel_rules_nodejs//:bzl",
-    ],
-    visibility = ["//spa:__subpackages__"],
-    deps = [
-        "@aspect_rules_swc//swc",
-    ],
 )
