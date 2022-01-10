@@ -27,7 +27,10 @@ bzl_library(
     name = "defs",
     srcs = ["defs.bzl"],
     visibility = ["//visibility:public"],
-    deps = ["//spa/private/routes:generate_route_manifest"],
+    deps = [
+        "//spa/private:build_routes",
+        "//spa/private/routes:generate_route_manifest",
+    ],
 )
 
 bzl_library(

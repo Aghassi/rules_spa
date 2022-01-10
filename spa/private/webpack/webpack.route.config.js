@@ -1,7 +1,7 @@
 const ModuleFederationPlugin =
   require("webpack").container.ModuleFederationPlugin;
 const generateWebpackCommonConfig = require("./webpack.common.config");
-const shared = require("./webpack.module-federation.shared");
+const path = require("path");
 
 /**
  * Webpack configuration used to generate a unique road
@@ -9,8 +9,10 @@ const shared = require("./webpack.module-federation.shared");
  * @param {Record<string, boolean|string}
  * @returns {import('webpack').Configuration} a Webpack configuration
  */
-module.exports = ({ entry, production, name }) => {
+module.exports = ({ entry, production, name, SHARED_CONFIG }) => {
   const commonConfig = generateWebpackCommonConfig({ production });
+  // This must be required by the end user for now
+  const shared = require(path.resolve(`${SHARED_CONFIG}`));
 
   return {
     entry,
