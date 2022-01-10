@@ -75,8 +75,8 @@ def rules_spa_internal_deps():
     maybe(
         http_archive,
         name = "build_bazel_rules_nodejs",
-        sha256 = "cfc289523cf1594598215901154a6c2515e8bf3671fd708264a6f6aefe02bf39",
-        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.6/rules_nodejs-4.4.6.tar.gz"],
+        sha256 = "ddb78717b802f8dd5d4c01c340ecdc007c8ced5c1df7db421d0df3d642ea0580",
+        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.6.0/rules_nodejs-4.6.0.tar.gz"],
     )
 
     # The minimal version of rules_swc that we need
@@ -91,8 +91,8 @@ def rules_spa_internal_deps():
     maybe(
         http_archive,
         name = "rules_nodejs",
-        sha256 = "a2b1b60c51b0193ed1646accf77a28cfd4f4ce1f6c86f32ce11455101be3a9c4",
-        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.3/rules_nodejs-core-4.4.3.tar.gz"],
+        sha256 = "005c59bf299d15d1d9551f12f880b1a8967fa883654c897907a667cdbb77c7a6",
+        urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.6.0/rules_nodejs-core-4.6.0.tar.gz"],
     )
 
     # rules_js is needed for rules_swc
