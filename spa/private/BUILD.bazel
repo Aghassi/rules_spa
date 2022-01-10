@@ -18,3 +18,15 @@ bzl_library(
     srcs = ["versions.bzl"],
     visibility = ["//spa:__subpackages__"],
 )
+
+bzl_library(
+    name = "build_server",
+    srcs = [
+        "build_server.bzl",
+        "@build_bazel_rules_nodejs//:bzl",
+    ],
+    visibility = ["//spa:__subpackages__"],
+    deps = [
+        "@aspect_rules_swc//swc",
+    ],
+)
