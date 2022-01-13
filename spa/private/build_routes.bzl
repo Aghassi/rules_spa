@@ -4,7 +4,7 @@ load("@aspect_rules_swc//swc:swc.bzl", "swc")
 
 # Defines this as an importable module area for shared macros and configs
 
-def build_route(name, entry, srcs, data, webpack, shared):
+def build_route(name, entry, srcs, data, webpack, federation_shared_config):
     """
     Macro that allows easy composition of routes from a multi route spa
 
@@ -14,7 +14,7 @@ def build_route(name, entry, srcs, data, webpack, shared):
         srcs: source files to be transpiled and bundled
         data: any dependencies the route needs to build
         webpack: the webpack module to invoke. The users must provide their own load statement for webpack before this macro is called
-        shared: a nodejs module file that exposes a map of dependencies to their shared module spec https://webpack.js.org/plugins/module-federation-plugin/#sharing-hints. An example of this is located within this repository under the private/webpack folder.
+        federation_shared_config: a nodejs module file that exposes a map of dependencies to their shared module spec https://webpack.js.org/plugins/module-federation-plugin/#sharing-hints. An example of this is located within this repository under the private/webpack folder.
     """
 
     build_name = name + "_route"
@@ -47,13 +47,13 @@ def build_route(name, entry, srcs, data, webpack, shared):
         args = [
             "--env name=" + build_name,
             "--env entry=./$(execpath :transpile_" + name + ")",
-            "--env SHARED_CONFIG=$(location %s)" % shared,
+            "--env SHARED_CONFIG=$(location %s)" % federation_shared_config,
             "--output-path=$(@D)",
             "--config=$(rootpath %s)" % route_config,
         ],
         data = [
             route_config,
-            shared,
+            federation_shared_config,
             Label("//spa/private/webpack:webpack.common.config.js"),
         ] + deps,
         output_dir = True,
