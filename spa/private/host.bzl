@@ -31,6 +31,7 @@ def build_host(entry, data, srcs, webpack, shared):
             name = "transpile_" + s.replace("/", "_").split(".")[0],
             args = [
                 "-C jsc.parser.jsx=true",
+                "-C jsc.parser.syntax=typescript",
             ],
             srcs = [s],
         )
