@@ -4,7 +4,7 @@ load("@aspect_rules_swc//swc:swc.bzl", "swc")
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 
 # Defines this as an importable module area for shared macros and configs
-def build_host(entry, data, srcs, webpack, shared):
+def build_host(entry, data, srcs, webpack, federation_shared_config):
     """
     Macro that allows easy building of the main host of a SPA
 
@@ -16,7 +16,7 @@ def build_host(entry, data, srcs, webpack, shared):
         data: any dependencies the route needs to build including npm modules
         srcs: srcs files to be transpiled and sent to webpack
         webpack: the webpack module to invoke. The users must provide their own load statement for webpack before this macro is called
-        shared: a nodejs module file that exposes a map of dependencies to their shared module spec https://webpack.js.org/plugins/module-federation-plugin/#sharing-hints. An example of this is located within this repository under the private/webpack folder.
+        federation_shared_config: a nodejs module file that exposes a map of dependencies to their shared module spec https://webpack.js.org/plugins/module-federation-plugin/#sharing-hints. An example of this is located within this repository under the private/webpack folder.
     """
 
     # list of all transpilation targets from SWC to be passed to webpack
@@ -44,13 +44,13 @@ def build_host(entry, data, srcs, webpack, shared):
         args = [
             "--env name=host",
             "--env entry=./$(location :transpile_host)",
-            "--env SHARED_CONFIG=$(location %s)" % shared,
+            "--env SHARED_CONFIG=$(location %s)" % federation_shared_config,
             "--output-path=$(@D)",
             "--config=$(rootpath %s)" % host_config,
         ],
         data = [
             host_config,
-            shared,
+            federation_shared_config,
             Label("//spa/private/webpack:webpack.common.config.js"),
             Label("//spa/private/webpack:webpack.module-federation.shared.js"),
         ] + deps,
