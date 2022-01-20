@@ -24,6 +24,7 @@ module.exports = ({ entry, production, name, SHARED_CONFIG }) => {
         : `${name}.[name].js`,
     },
     plugins: [
+      ...commonConfig.plugins,
       new ModuleFederationPlugin({
         name,
         filename: "remoteEntry.[contenthash].js",

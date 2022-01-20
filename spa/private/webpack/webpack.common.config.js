@@ -1,3 +1,5 @@
+const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
+
 module.exports = ({ production }) => {
   return {
     cache: false,
@@ -22,5 +24,6 @@ module.exports = ({ production }) => {
         path: false,
       },
     },
+    plugins: [new ModuleScopePlugin()],
   };
 };

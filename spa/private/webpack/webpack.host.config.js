@@ -22,6 +22,7 @@ module.exports = ({ entry, production, SHARED_CONFIG }) => {
       filename: production ? `app.[name].[contenthash].js` : `app.[name].js`,
     },
     plugins: [
+      ...commonConfig.plugins,
       new ModuleFederationPlugin({
         name: "app",
         filename: "appEntry.js",
