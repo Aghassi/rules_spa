@@ -48,6 +48,7 @@ def build_route(name, entry, srcs, data, webpack, federation_shared_config):
             "--env name=" + build_name,
             "--env entry=./$(execpath :transpile_" + name + ")",
             "--env SHARED_CONFIG=$(location %s)" % federation_shared_config,
+            "--env BAZEL_SRC_PATH=$(execpath)",
             "--output-path=$(@D)",
             "--config=$(rootpath %s)" % route_config,
         ],

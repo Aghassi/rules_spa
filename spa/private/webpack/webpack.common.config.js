@@ -1,6 +1,6 @@
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 
-module.exports = ({ production }) => {
+module.exports = ({ production, BAZEL_SRC_PATH }) => {
   return {
     cache: false,
 
@@ -24,6 +24,6 @@ module.exports = ({ production }) => {
         path: false,
       },
     },
-    plugins: [new ModuleScopePlugin()],
+    plugins: [new ModuleScopePlugin(BAZEL_SRC_PATH)],
   };
 };

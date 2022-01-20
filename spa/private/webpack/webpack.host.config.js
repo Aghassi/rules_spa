@@ -9,8 +9,11 @@ const path = require("path");
  * @param {Record<string, boolean|string}
  * @returns {import('webpack').Configuration} a Webpack configuration
  */
-module.exports = ({ entry, production, SHARED_CONFIG }) => {
-  const commonConfig = generateWebpackCommonConfig({ production });
+module.exports = ({ entry, production, SHARED_CONFIG, BAZEL_SRC_PATH }) => {
+  const commonConfig = generateWebpackCommonConfig({
+    production,
+    BAZEL_SRC_PATH,
+  });
   // This must be required by the end user for now
   const shared = require(path.resolve(`${SHARED_CONFIG}`));
 
