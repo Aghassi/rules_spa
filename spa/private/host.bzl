@@ -45,7 +45,7 @@ def build_host(entry, data, srcs, webpack, federation_shared_config):
             "--env name=host",
             "--env entry=./$(location :transpile_host)",
             "--env SHARED_CONFIG=$(location %s)" % federation_shared_config,
-            "--env BAZEL_SRC_PATH=$(execpath)",
+            "--env BAZEL_SRC_PATH=$(execpath :transpile_host)",
             "--output-path=$(@D)",
             "--config=$(rootpath %s)" % host_config,
         ],

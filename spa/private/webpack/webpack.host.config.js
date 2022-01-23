@@ -25,7 +25,6 @@ module.exports = ({ entry, production, SHARED_CONFIG, BAZEL_SRC_PATH }) => {
       filename: production ? `app.[name].[contenthash].js` : `app.[name].js`,
     },
     plugins: [
-      ...commonConfig.plugins,
       new ModuleFederationPlugin({
         name: "app",
         filename: "appEntry.js",

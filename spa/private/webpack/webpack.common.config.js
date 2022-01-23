@@ -24,7 +24,9 @@ module.exports = ({ production, BAZEL_SRC_PATH }) => {
         // In the browser, let `path` be an empty module
         path: false,
       },
+      plugins: [
+        new ModuleScopePlugin(path.resolve(path.dirname(BAZEL_SRC_PATH)), []),
+      ],
     },
-    plugins: [new ModuleScopePlugin(path.resolve(BAZEL_SRC_PATH, "/src"))],
   };
 };

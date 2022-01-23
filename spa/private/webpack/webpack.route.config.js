@@ -33,7 +33,6 @@ module.exports = ({
         : `${name}.[name].js`,
     },
     plugins: [
-      ...commonConfig.plugins,
       new ModuleFederationPlugin({
         name,
         filename: "remoteEntry.[contenthash].js",
