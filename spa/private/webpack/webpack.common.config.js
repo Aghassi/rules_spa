@@ -1,4 +1,7 @@
-module.exports = ({ production }) => {
+const path = require("path");
+const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
+
+module.exports = ({ production, BAZEL_SRC_PATH }) => {
   return {
     cache: false,
 
@@ -21,6 +24,9 @@ module.exports = ({ production }) => {
         // In the browser, let `path` be an empty module
         path: false,
       },
+      plugins: [
+        new ModuleScopePlugin(path.resolve(path.dirname(BAZEL_SRC_PATH)), []),
+      ],
     },
   };
 };

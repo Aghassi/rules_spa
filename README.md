@@ -4,7 +4,7 @@ A set of macros and rules to support building a **S**ingle **P**age **A**rchitec
 
 **Please be advised this rule set is in very preliminary development and may break at anytime between changes.**
 
-_NOTE:_ This rule set depends on `webpack` via installation of `npm` with `rules_nodejs`. This currently is not encoded into the Bazel graph, so be sure to bring your own version (must be v5 or higher)
+_NOTE:_ This rule set depends on `webpack` (v5+) and `react-dev-utils` via installation of `npm` with `rules_nodejs`. This currently is not encoded into the Bazel graph, so be sure to bring your own versions.
 
 ## Installation
 
